@@ -47,6 +47,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.data_bags_path = "./chef/data_bags"
     
     chef.add_recipe "python"
-    chef.add_recipe "hipsnip-mongodb"
+    #chef.add_recipe "hipsnip-mongodb"
+    chef.add_recipe 'vim'
+    chef.add_recipe 'git'
+    chef.add_recipe 'nginx'
   end
 end
