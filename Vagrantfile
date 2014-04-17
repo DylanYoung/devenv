@@ -31,4 +31,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe 'git'
     chef.add_recipe 'nginx'
   end
+
+  # Shell
+  config.vm.provision :shell, :path => "shell/rbenv.sh"
+  config.vm.provision :shell, :path => "shell/gem.sh"
+  config.vm.provision :shell, :path => "shell/virtualenvwrapper.sh"
 end
