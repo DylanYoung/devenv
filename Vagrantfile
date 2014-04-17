@@ -9,11 +9,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.vm.box = "ubuntu-12.04"
   config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
 
-  # Share an additional folder to the guest VM. The first argument is
-  # the path on the host to the actual folder. The second argument is
-  # the path on the guest to mount the folder. And the optional third
-  # argument is a set of non-required options.
+  # addition sync folders.
   config.vm.synced_folder "sync/", "/develop", create: true
+
+  # attain local IP
+  config.vm.network "public_network"
 
   # Chef 
   config.omnibus.chef_version = :latest
@@ -33,7 +33,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
   # Shell
-  config.vm.provision :shell, :path => "shell/rbenv.sh"
-  config.vm.provision :shell, :path => "shell/gem.sh"
+  #config.vm.provision :shell, :path => "shell/rbenv.sh"
+  #config.vm.provision :shell, :path => "shell/gem.sh"
   config.vm.provision :shell, :path => "shell/virtualenvwrapper.sh"
 end
