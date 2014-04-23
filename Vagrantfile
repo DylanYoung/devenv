@@ -6,8 +6,7 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
-  config.vm.box = "ubuntu-12.04"
-  config.vm.box_url = "http://cloud-images.ubuntu.com/vagrant/precise/current/precise-server-cloudimg-amd64-vagrant-disk1.box"
+  config.vm.box = "hashicorp/precise64"
 
   # addition sync folders.
   config.vm.synced_folder ENV["HOME"] + "/Develop", "/develop", create: true
@@ -30,6 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe 'vim'
     chef.add_recipe 'git'
     chef.add_recipe 'nginx'
+    chef.add_recipe 'nodejs'
   end
 
   # Shell
