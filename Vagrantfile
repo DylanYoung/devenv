@@ -36,4 +36,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #config.vm.provision :shell, :path => "shell/rbenv.sh"
   #config.vm.provision :shell, :path => "shell/gem.sh"
   config.vm.provision :shell, :path => "shell/virtualenvwrapper.sh"
+  config.vm.provision :shell, :path => "shell/grunt.sh"
+  config.vm.provision :shell, :path => "shell/bower.sh"
+  config.vm.provision :shell, :path => "shell/compass.sh"
 end
