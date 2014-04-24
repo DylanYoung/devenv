@@ -6,15 +6,26 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
+  # the box we want
   config.vm.box = "hashicorp/precise64"
 
-  # addition sync folders.
+  # sync folders.                       #Local dir, #VM dir
   config.vm.synced_folder ENV["HOME"] + "/Develop", "/develop", create: true
 
   # attain local IP
   config.vm.network "public_network"
 
-  # Chef 
+  # update apt-get 
+  config.vm.provision "shell", inline: "apt-get update"
+
+  # ---------- Shell, TODO change to rbenv or cookbooks
+  config.vm.provision :shell, :path => "shell/curl.sh"
+  config.vm.provision :shell, :path => "shell/rvm.sh",  :args => "stable"
+  #config.vm.provision :shell, :path => "shell/ruby.sh", :args => "1.9.3"
+  config.vm.provision :shell, :path => "shell/ruby.sh", :args => "2.0.0"
+  config.vm.provision :shell, inline: "gem install compass bson_ext"
+
+  # ---------- Chef 
   config.omnibus.chef_version = :latest
 
   config.vm.provision "chef_solo" do |chef|
@@ -32,11 +43,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.add_recipe 'nodejs'
   end
 
-  # Shell
-  #config.vm.provision :shell, :path => "shell/rbenv.sh"
-  #config.vm.provision :shell, :path => "shell/gem.sh"
-  config.vm.provision :shell, :path => "shell/virtualenvwrapper.sh"
-  config.vm.provision :shell, :path => "shell/grunt.sh"
-  config.vm.provision :shell, :path => "shell/bower.sh"
-  config.vm.provision :shell, :path => "shell/compass.sh"
+# ---------- Shell
+
+#config.vm.provision :shell, :path => "shell/rbenv.sh"
+#config.vm.provision :shell, :path => "shell/gem.sh"
+config.vm.provision :shell, :path => "shell/virtualenvwrapper.sh"
+config.vm.provision :shell, :path => "shell/grunt.sh"
+config.vm.provision :shell, :path => "shell/bower.sh"
+
 end
