@@ -17,3 +17,5 @@ bin/*
 .bundle/*
 
 sync
+
+.DS_Store

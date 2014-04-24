@@ -9,3 +9,4 @@ natural successor to the dreid93/dotfiles repository.
 ## Authors 
 
 - Dawson Reid
+- Joel Kuntz
